@@ -41,6 +41,8 @@ def main():
     bb_rct.centery = random.randint(0, HEIGHT)  # 練習1
     vx, vy = +5, +5  # 練習2
 
+    
+
     clock = pg.time.Clock()
     tmr = 0
     while True:
@@ -49,15 +51,24 @@ def main():
                 return
             
         if kk_rct.colliderect(bb_rct):
+            last_coordinate = kk_rct.center
+            kk_img = pg.image.load("ex02/fig/8.png")
+            kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
+            kk_rct = kk_img.get_rect() 
+            kk_rct.center = last_coordinate
+            screen.blit(kk_img, kk_rct)
+            pg.display.update()
+            clock.tick(1.0)
             print("Game Over")
             return
         
-        key_lst = pg.key.get_pressed()  #練習3
+        key_lst = pg.key.get_pressed()  # 練習3
         sum_mv = [0, 0]
         for k, tpl in delta.items():
             if key_lst[k]:
                 sum_mv[0] += tpl[0]
                 sum_mv[1] += tpl[1]
+
 
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_mv[0], sum_mv[1])  #練習3
@@ -74,7 +85,7 @@ def main():
         screen.blit(bb_img, bb_rct)  # 練習1
         pg.display.update()
         tmr += 1
-        clock.tick(50)
+        clock.tick(100)
 
 
 if __name__ == "__main__":
