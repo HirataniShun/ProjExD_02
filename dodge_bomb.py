@@ -12,7 +12,7 @@ delta = {  # 練習3
     pg.K_RIGHT: (+5, 0)
 }
 
-def check_bound(rct: pg.Rect) -> tuple[bool, bool]:  #練習4
+def check_bound(rct: pg.Rect) -> tuple[bool, bool]:  # 練習4
     """
     オブジェクトが画面内or画面買いを判定し、真理値タプルを返す関数
     引数 rct：こうかとんor爆弾SurfaceのRect
@@ -41,7 +41,7 @@ def main():
     bb_rct.centery = random.randint(0, HEIGHT)  # 練習1
     vx, vy = +5, +5  # 練習2
 
-    kk_muki = {
+    kk_muki = {  # 課題1　画像表示する辞書の作成
             (0, 0)  :pg.transform.rotozoom(kk_img, 0, 1.0),
             (-5, 0) :pg.transform.rotozoom(kk_img, 0, 1.0),
             (0, -5) :pg.transform.rotozoom(kk_img, 270, 1.0),
@@ -60,15 +60,15 @@ def main():
             if event.type == pg.QUIT: 
                 return
             
-        if kk_rct.colliderect(bb_rct):
-            last_coordinate = kk_rct.center
-            kk_img = pg.image.load("ex02/fig/8.png")
+        if kk_rct.colliderect(bb_rct):  
+            last_coordinate = kk_rct.center  # 課題3 爆弾に当たった座標を保存
+            kk_img = pg.image.load("ex02/fig/8.png")  # 課題3 画像読み込み
             kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
             kk_rct = kk_img.get_rect() 
-            kk_rct.center = last_coordinate
-            screen.blit(kk_img, kk_rct)
+            kk_rct.center = last_coordinate  # 課題3 爆弾に当たった座標に表示
+            screen.blit(kk_img, kk_rct)  # 課題3 画像を表示
             pg.display.update()
-            clock.tick(1.0)
+            clock.tick(1.0)  # 課題3 時間の進みを遅くし表示時間を伸ばす
             print("Game Over")
             return
         
@@ -78,7 +78,7 @@ def main():
             if key_lst[k]:
                 sum_mv[0] += tpl[0]
                 sum_mv[1] += tpl[1]
-                kk_img = kk_muki[tuple(sum_mv)]
+                kk_img = kk_muki[tuple(sum_mv)]  # 課題1　入力方向に沿った向きの画像を表示
 
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_mv[0], sum_mv[1])  #練習3
