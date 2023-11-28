@@ -4,13 +4,13 @@ import pygame as pg
 
 
 WIDTH, HEIGHT = 1600, 900
-
 delta = {  # 練習3
     pg.K_UP: (0, -5),
     pg.K_DOWN: (0, +5),
     pg.K_LEFT: (-5, 0),
     pg.K_RIGHT: (+5, 0)
 }
+
 
 def check_bound(rct: pg.Rect) -> tuple[bool, bool]:  # 練習4
     """
@@ -24,6 +24,7 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:  # 練習4
     if rct.top < 0 or HEIGHT < rct.bottom:
         tate = False
     return yoko, tate
+
 
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
