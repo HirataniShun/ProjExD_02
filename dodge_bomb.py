@@ -41,7 +41,17 @@ def main():
     bb_rct.centery = random.randint(0, HEIGHT)  # 練習1
     vx, vy = +5, +5  # 練習2
 
-    
+    kk_muki = {
+            (0, 0)  :pg.transform.rotozoom(kk_img, 0, 1.0),
+            (-5, 0) :pg.transform.rotozoom(kk_img, 0, 1.0),
+            (0, -5) :pg.transform.rotozoom(kk_img, 270, 1.0),
+            (+5, -5):pg.transform.rotozoom(pg.transform.flip(kk_img, True, False), 45, 1.0),
+            (+5, 0) :pg.transform.rotozoom(pg.transform.flip(kk_img, True, False), 0, 1.0),
+            (+5, +5):pg.transform.rotozoom(pg.transform.flip(kk_img, True, False), 315, 1.0),
+            (0, +5) :pg.transform.rotozoom(kk_img, 90, 1.0),
+            (-5, +5):pg.transform.rotozoom(kk_img, 45, 1.0),
+            (-5, -5):pg.transform.rotozoom(kk_img, 315, 1.0),
+            }
 
     clock = pg.time.Clock()
     tmr = 0
@@ -68,7 +78,7 @@ def main():
             if key_lst[k]:
                 sum_mv[0] += tpl[0]
                 sum_mv[1] += tpl[1]
-
+                kk_img = kk_muki[tuple(sum_mv)]
 
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_mv[0], sum_mv[1])  #練習3
